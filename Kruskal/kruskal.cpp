@@ -12,7 +12,7 @@ int main()
     grafo.insertar_vertice('d');
     grafo.insertar_vertice('e');
     grafo.insertar_vertice('f');
-
+    
     grafo.insertar_arista('a', 'b', 6);
     grafo.insertar_arista('a', 'c', 1);
     grafo.insertar_arista('a', 'd', 5);
