@@ -24,6 +24,9 @@ typedef float pH;
 //Numero denotando la concentracion porcentual del 0 al 100
 typedef float Concentracion;
 
+//Numero que denota minutos transcurridos
+typedef unsigned int Minutos;
+
 enum Booleano{FALSE, TRUE};
 
 //Tipo de produccion
@@ -299,6 +302,33 @@ public:
     //por ejemplo BienMaterial(se usaria para todas las clases que representan un bien material) y remplazarla por los punteros void 
 };
 
+class GradienteTemperatura
+{
+public:
+    GradienteTemperatura();
+    virtual ~GradienteTemperatura();
+
+    virtual void borrar();
+    virtual void ligar(Temperatura,Minutos);
+
+    Temperatura temperaturaEn(Minutos);
+
+protected:
+};
+
+class ControladorTemperatura
+{
+public:
+    ControladorTemperatura(Posicion p) : h(p){}
+    ControladorTemperatura();
+
+    void procesar(const GradienteTemperatura&);
+
+    Minutos planificar(const GradienteTemperatura&) const;
+
+private:
+    Calentador h;
+};
 int main()
 {
     Temperatura temperatura;
@@ -315,5 +345,15 @@ int main()
     TanqueAlmacen t1, t2; //instancias de la clase TanqueAlmacen denotada por la variable t1.
     TanqueAgua a;
     TanqueNutrientes n;
+
+    GradienteTemperatura gradienteCreciente;
+    ControladorTemperatura controladorGradiente(7);
+
+    gradienteCreciente.ligar(120,60);
+    gradienteCreciente.ligar(65,180);
+
+    controladorGradiente.procesar(gradienteCreciente);
+
+    return EXIT_SUCCESS;
 }
 
