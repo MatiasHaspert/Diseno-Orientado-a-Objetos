@@ -1,0 +1,4 @@
+1 Automoviles
+2 Electrodomesticos
+3 Celulares
+4 Muebles
