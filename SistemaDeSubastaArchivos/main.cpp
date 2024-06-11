@@ -41,9 +41,11 @@ void Subasta::finaliza_subasta(int numeroLote)
     Lote *lote = get_lote(numeroLote);
     Oferta *oferta = lote->get_oferta();
 
-
-    finaliza_subasta << lote->get_numero() << " " <<lote->get_nombre() << " " << oferta->get_NombreOfertante() << " " << oferta->get_monto() <<endl;
-
+    if(oferta != NULL)
+    {
+        finaliza_subasta << lote->get_numero() << " " <<lote->get_nombre() << " " << oferta->get_NombreOfertante() << " " << oferta->get_monto() <<endl;
+    }
+    
     finaliza_subasta.close();
 
     delete lotes[numeroLote];
